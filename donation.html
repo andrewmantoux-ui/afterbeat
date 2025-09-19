@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Afterbeat - The Nightlife App</title>
+    <title>Afterbeat - Donación</title>
     <!-- Carga de Tailwind CSS para un diseño moderno y responsivo -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Configuración de la fuente Inter -->
@@ -11,588 +11,179 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #0b0c1e; /* Fondo oscuro */
+            color: #e2e8f0; /* Texto claro */
             overflow-x: hidden;
-            background-color: #0b0c1e; /* Fondo más oscuro y sofisticado */
         }
 
-        /* Estilos para el canvas de fondo */
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            opacity: 0.8; /* Hace el fondo más sutil */
-        }
-
-        /* Ocultar la barra de desplazamiento horizontal en la ruleta del equipo */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
-        }
-
-        /* Estilos para el mapa de ruta horizontal */
-        .roadmap-container {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            overflow-x: auto;
-            padding: 1rem 0;
-            gap: 2rem;
-            min-height: 250px;
-        }
-
-        .roadmap-container::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(to right, #4f46e5, #9333ea);
-            transform: translateY(-50%);
-            z-index: -1;
-        }
-
-        .roadmap-item {
-            flex: 0 0 auto;
-            position: relative;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 200px;
-            padding: 1rem;
-        }
-
-        .roadmap-dot {
-            width: 1.5rem;
-            height: 1.5rem;
-            border-radius: 9999px;
-            z-index: 10;
-            margin-bottom: 0.5rem;
-            transition: all 0.3s ease-in-out;
-            border: 4px solid;
+        .container {
+            max-width: 800px;
         }
         
-        .roadmap-dot.completed {
-            background-color: #10B981; /* Verde esmeralda para completado */
-            border-color: #059669;
-        }
-        
-        .roadmap-dot.in-progress {
-            background-color: #9333ea;
-            border-color: #4f46e5;
-        }
-        
-        .roadmap-dot.pending {
-            background-color: #4B5563; /* Gris oscuro para pendiente */
-            border-color: #374151;
-        }
-
-        .roadmap-content {
+        .donation-card {
             background-color: #1f2937;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            text-align: center;
-            width: 100%;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            cursor: pointer;
-        }
-        
-        .roadmap-content:hover {
-            transform: translateY(-5px) scale(1.02);
+            border-radius: 1rem;
+            padding: 2rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            background-color: #374151;
+            border: 1px solid #4b5563;
+            color: #e2e8f0;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #9333ea;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            text-align: center;
+        }
+
+        .btn-purple {
+            background-color: #9333ea;
+            color: #ffffff;
+        }
+
+        .btn-purple:hover {
+            background-color: #8b5cf6;
+            transform: translateY(-2px);
         }
     </style>
 </head>
-<body>
-    <!-- Canvas de fondo para la animación interactiva -->
-    <canvas id="bg-canvas"></canvas>
+<body class="flex flex-col items-center justify-center min-h-screen p-4">
 
-    <!-- Contenedor principal de la página, por encima del canvas -->
-    <div class="relative z-10 min-h-screen flex flex-col items-center p-4">
+    <!-- Botón de regreso a la página principal -->
+    <a href="index.html" class="absolute top-4 left-4 text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+        </svg>
+        <span>Volver</span>
+    </a>
 
-        <!-- Botón para cambiar de idioma -->
-        <div class="absolute top-4 right-4 z-50">
-            <button id="lang-toggle" class="bg-gray-800 text-gray-300 px-4 py-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors">
-                ES / EN
-            </button>
-        </div>
-
-        <!-- Sección de Encabezado: Logo y Slogan -->
-        <header class="text-center py-10 md:py-20 max-w-2xl mx-auto">
-            <h1 class="text-5xl md:text-6xl font-extrabold text-white tracking-tight">Afterbeat</h1>
-            <p class="text-lg md:text-xl font-medium text-gray-400 mt-2">The nightlife app that puts events, tickets, and vibes in your pocket.</p>
-        </header>
-
-        <!-- Contenido principal de la página -->
-        <main class="w-full max-w-5xl space-y-16 p-4">
+    <div class="container mx-auto p-4 md:p-8">
+        <div class="donation-card">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-center text-white mb-6">
+                Apoya nuestro proyecto ✨
+            </h1>
+            <p class="text-center text-lg mb-6">
+                Somos un grupo de jóvenes emprendedores que estamos dando los primeros pasos para sacar adelante este proyecto. Para nosotros, vuestra ayuda es esencial, por eso ponemos a disposición varias formas de colaborar:
+                <br><br>
+                👉 Podéis realizar una transferencia bancaria o un Bizum.
+            </p>
             
-            <!-- Sección de Roadmap -->
-            <section id="roadmap" class="bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-lang-es="Hoja de Ruta" data-lang-en="Roadmap">Hoja de Ruta</h2>
-                <div class="roadmap-container hide-scrollbar">
-                    <!-- Hito 1: Idea y Plan (Completado) -->
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot completed"></div>
-                        <div class="roadmap-content">
-                            <h3 class="font-bold text-lg text-white" data-lang-es="Idea y Plan" data-lang-en="Idea & Plan">Idea y Plan</h3>
-                            <p class="text-sm text-gray-300 mt-1" data-lang-es="Concepto y planificación inicial del proyecto." data-lang-en="Initial project concept and planning.">Concepto y planificación inicial del proyecto.</p>
-                        </div>
-                    </div>
-                    <!-- Hito 2: Componentes (Completado) -->
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot completed"></div>
-                        <div class="roadmap-content">
-                            <h3 class="font-bold text-lg text-white" data-lang-es="Componentes" data-lang-en="Components">Componentes</h3>
-                            <p class="text-sm text-gray-300 mt-1" data-lang-es="Definición y desarrollo de funcionalidades clave de la app." data-lang-en="Definition and development of key app functionalities.">Definición y desarrollo de funcionalidades clave de la app.</p>
-                        </div>
-                    </div>
-                    <!-- Hito 3: Colaboración (Completado) -->
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot completed"></div>
-                        <div class="roadmap-content">
-                            <h3 class="font-bold text-lg text-white" data-lang-es="Colaboración" data-lang-en="Collaboration">Colaboración</h3>
-                            <p class="text-sm text-gray-300 mt-1" data-lang-es="Se completó la asociación y contacto con el desarrollador externo." data-lang-en="The partnership and contact with the external developer was completed.">Se completó la asociación y contacto con el desarrollador externo.</p>
-                        </div>
-                    </div>
-                    <!-- Hito 4: Recaudación de Fondos (En progreso) -->
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot in-progress"></div>
-                        <div class="roadmap-content">
-                            <h3 class="font-bold text-lg text-white" data-lang-es="Recaudación de Fondos" data-lang-en="Fundraising">Recaudación de Fondos</h3>
-                            <p class="text-sm text-gray-300 mt-1" data-lang-es="Estamos trabajando activamente para recaudar fondos." data-lang-en="We are actively working to raise funds.">Estamos trabajando activamente para recaudar fondos.</p>
-                        </div>
-                    </div>
-                    <!-- Hito 5: Diseño (Pendiente) -->
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot pending"></div>
-                        <div class="roadmap-content">
-                            <h3 class="font-bold text-lg text-white" data-lang-es="Diseño" data-lang-en="Design">Diseño</h3>
-                            <p class="text-sm text-gray-300 mt-1" data-lang-es="Diseño completo de la interfaz de usuario y la experiencia de la app." data-lang-en="Complete design of the app's user interface and experience.">Diseño completo de la interfaz de usuario y la experiencia de la app.</p>
-                        </div>
-                    </div>
-                    <!-- Hito 6: Desarrollo (Pendiente) -->
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot pending"></div>
-                        <div class="roadmap-content">
-                            <h3 class="font-bold text-lg text-white" data-lang-es="Desarrollo" data-lang-en="Development">Desarrollo</h3>
-                            <p class="text-sm text-gray-300 mt-1" data-lang-es="Inicio de la codificación y construcción de la infraestructura de servidores." data-lang-en="Start of coding and building the server infrastructure.">Inicio de la codificación y construcción de la infraestructura de servidores.</p>
-                        </div>
-                    </div>
-                    <!-- Hito 7: Lanzamiento (Pendiente) -->
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot pending"></div>
-                        <div class="roadmap-content">
-                            <h3 class="font-bold text-lg text-white" data-lang-es="Lanzamiento" data-lang-en="Launch">Lanzamiento</h3>
-                            <p class="text-sm text-gray-300 mt-1" data-lang-es="Lanzamiento público de la versión final de la aplicación." data-lang-en="Public launch of the final version of the application.">Lanzamiento público de la versión final de la aplicación.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Sección de Noticias y Novedades -->
-            <section id="news" class="bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-lang-es="Noticias y Novedades" data-lang-en="News & Updates">Noticias y Novedades</h2>
-                <ul class="space-y-4">
-                    <!-- Nueva noticia sobre el rediseño del logo -->
-                    <li class="bg-gray-700 p-4 rounded-lg flex flex-col md:flex-row items-start gap-4 transition-all hover:bg-gray-600">
-                        <span class="text-gray-400 font-bold w-full md:w-24 flex-shrink-0" data-lang-es="15 de sep, 2025" data-lang-en="Sep 15, 2025">15 de sep, 2025</span>
-                        <div>
-                            <h3 class="font-bold text-lg text-white" data-lang-es="Rediseño del logotipo de Afterbeat" data-lang-en="Afterbeat logo redesign">Rediseño del logotipo de Afterbeat</h3>
-                            <p class="text-gray-300 text-sm" data-lang-es="El logo de la empresa está siendo rediseñado completamente." data-lang-en="The company's logo is being completely redesigned.">El logo de la empresa está siendo completamente rediseñado.</p>
-                        </div>
-                    </li>
-                    <!-- Noticia de Instagram -->
-                    <li class="bg-gray-700 p-4 rounded-lg flex flex-col md:flex-row items-start gap-4 transition-all hover:bg-gray-600">
-                        <span class="text-gray-400 font-bold w-full md:w-24 flex-shrink-0" data-lang-es="7 de sep, 2025" data-lang-en="Sep 7, 2025">7 de sep, 2025</span>
-                        <div>
-                            <h3 class="font-bold text-lg text-white" data-lang-es="Instagram oficial listo" data-lang-en="Official Instagram ready">Instagram oficial listo</h3>
-                            <p class="text-gray-300 text-sm" data-lang-es="Ya está lista la cuenta de Instagram @afterbeat_app, ¡síguenos para no perderte nada!" data-lang-en="The official Instagram account @afterbeat_app is ready, follow us so you don't miss anything!">Ya está lista la cuenta de Instagram @afterbeat_app, ¡síguenos para no perderte nada!</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
+            <p class="text-center text-red-400 font-bold text-lg mb-4">
+                ⚠️ Importante: al ser una web básica, el pago no se realiza directamente desde aquí. Antes de hacer la donación, os pedimos que rellenéis el formulario con vuestros datos.
+            </p>
             
-            <!-- Sección de Vista Previa de Eventos -->
-            <section id="event-preview" class="bg-gray-800 p-6 md:p-8 rounded-2xl shadow-xl text-white">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6" data-lang-es="Próximos Eventos" data-lang-en="Upcoming Events">Próximos Eventos</h2>
-                
-                <div class="flex flex-col md:flex-row justify-center items-center gap-6">
-                    <!-- Primer recuadro de evento: La Prereo Afterbeat -->
-                    <div class="bg-gray-700 p-6 rounded-xl flex-1 w-full md:w-auto shadow-lg">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-semibold" data-lang-es="La Prereo Afterbeat" data-lang-en="The Afterbeat Pre-party">La Prereo Afterbeat</h3>
-                            <span class="bg-blue-500 text-blue-900 text-xs font-bold px-2 py-1 rounded-full" data-lang-es="Próximamente" data-lang-en="Coming soon">Próximamente</span>
-                        </div>
-                        <p class="text-sm text-gray-300" data-lang-es="Fecha: 15.11.2025" data-lang-en="Date: 11.15.2025">Fecha: 15.11.2025</p>
-                    </div>
+            <p class="text-center mb-6">
+                En ese formulario también podéis:
+            </p>
 
-                    <!-- Segundo recuadro de evento: Opening Party Afterbeat -->
-                    <div class="bg-gray-700 p-6 rounded-xl flex-1 w-full md:w-auto shadow-lg">
-                        <div class="flex items-center justify-between mb-2">
-                            <h3 class="text-xl font-semibold" data-lang-es="Opening Party Afterbeat" data-lang-en="Afterbeat Opening Party">Opening Party Afterbeat</h3>
-                            <span class="bg-yellow-500 text-yellow-900 text-xs font-bold px-2 py-1 rounded-full" data-lang-es="En espera" data-lang-en="On hold">En espera</span>
-                        </div>
-                        <p class="text-sm text-gray-300" data-lang-es="Fecha: Sin fecha anunciada" data-lang-en="Date: No date announced">Fecha: Sin fecha anunciada</p>
-                    </div>
-                </div>
+            <ul class="list-disc list-inside space-y-2 mb-8 text-center">
+                <li>Dejarnos ideas o mensajes de motivación 💬</li>
+                <li>Avisarnos de cualquier cosa importante</li>
+                <li>Mostrarnos vuestro interés en ser inversores o socios. En ese caso, no tenemos problema en organizar una llamada con vosotros 📞</li>
+            </ul>
 
-                <div class="mt-8 text-center">
-                    <a href="events.html" class="bg-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg hover:bg-purple-700 transition-colors inline-block" data-lang-es="Ver todos los Eventos" data-lang-en="See all Events">Ver todos los Eventos</a>
-                </div>
-
-                <!-- Sección de Donación -->
-                <div class="mt-8 text-center">
-                    <h3 class="text-2xl font-bold text-white mb-4" data-lang-es="Apoya Nuestro Proyecto" data-lang-en="Support Our Project">Apoya Nuestro Proyecto</h3>
-                    <p class="text-gray-300 text-lg mb-6" data-lang-es="Tu donación nos ayudará a lanzar la versión completa de la app y a expandirnos a más ciudades." data-lang-en="Your donation will help us launch the full version of the app and expand to more cities.">Tu donación nos ayudará a lanzar la versión completa de la app y a expandirnos a más ciudades.</p>
-                    <a href="donation.html" class="bg-purple-600 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:bg-purple-700 transition-colors text-lg" data-lang-es="Donar Ahora" data-lang-en="Donate Now">Donar Ahora</a>
-                </div>
-            </section>
-            
-            <!-- Sección del Equipo (Ruleta) -->
-            <section id="team" class="p-6 md:p-8 rounded-2xl shadow-xl">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-6" data-lang-es="Conoce al Equipo" data-lang-en="Meet the Team">Conoce al Equipo</h2>
-                <div class="flex overflow-x-scroll snap-x snap-mandatory pb-4 hide-scrollbar">
-                    <!-- Tarjeta de Miembro del Equipo: Alastair Older -->
-                    <div class="flex-shrink-0 w-64 snap-center mx-2 md:mx-4 bg-gray-800 p-6 rounded-xl shadow-lg transition-transform transform hover:scale-105">
-                        <img src="https://placehold.co/200x200/4B5563/FFFFFF?text=Alastair+Older" alt="Foto de Alastair Older" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-gray-700">
-                        <h3 class="text-xl font-bold text-white text-center">Alastair Older</h3>
-                        <p class="text-gray-400 text-center text-sm" data-lang-es="socio estrategico y networking" data-lang-en="Strategic Partner & Networking">socio estrategico y networking</p>
-                        <p class="text-white text-center text-sm mt-2" data-lang-es="Socio estratégico y aporta experiencia en gestión económica, estrategia empresarial y networking." data-lang-en="Strategic partner who provides expertise in economic management, business strategy, and networking.">Socio estratégico y aporta experiencia en gestión económica, estrategia empresarial y networking.</p>
-                        <button class="details-button mt-4 w-full bg-purple-600 text-white font-bold py-2 rounded-full hover:bg-purple-700 transition-colors" data-member="alastair-older" data-lang-es="Ver Detalles" data-lang-en="See Details">Ver Detalles</button>
-                    </div>
-                    <!-- Tarjeta de Miembro del Equipo: Adrien Fábrega -->
-                    <div class="flex-shrink-0 w-64 snap-center mx-2 md:mx-4 bg-gray-800 p-6 rounded-xl shadow-lg transition-transform transform hover:scale-105">
-                        <img src="https://placehold.co/200x200/9333ea/FFFFFF?text=Adrien+Fábrega" alt="Foto de Adrien Fábrega" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-gray-700">
-                        <h3 class="text-xl font-bold text-white text-center">Adrien Fábrega</h3>
-                        <p class="text-gray-400 text-center text-sm" data-lang-es="Fundador y CEO" data-lang-en="Founder & CEO">Fundador y CEO</p>
-                        <p class="text-gray-300 text-center text-sm mt-2" data-lang-es="Visionario detrás de Afterbeat, apasionado por la música electrónica y la vida nocturna." data-lang-en="Visionary behind Afterbeat, passionate about electronic music and nightlife.">Visionario detrás de Afterbeat, apasionado por la música electrónica y la vida nocturna.</p>
-                        <button class="details-button mt-4 w-full bg-purple-600 text-white font-bold py-2 rounded-full hover:bg-purple-700 transition-colors" data-member="adrien-fabrega" data-lang-es="Ver Detalles" data-lang-en="See Detalles">Ver Detalles</button>
-                    </div>
-                    <!-- Tarjeta de Miembro del Equipo: Jan Aguilera -->
-                    <div class="flex-shrink-0 w-64 snap-center mx-2 md:mx-4 bg-gray-800 p-6 rounded-xl shadow-lg transition-transform transform hover:scale-105">
-                        <img src="https://placehold.co/200x200/4f46e5/FFFFFF?text=Jan+Aguilera" alt="Foto de Jan Aguilera" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-4 border-gray-700">
-                        <h3 class="text-xl font-bold text-white text-center">Jan Aguilera</h3>
-                        <p class="text-gray-400 text-center text-sm" data-lang-es="Socio y ayudante" data-lang-en="Partner & Assistant">Socio y ayudante</p>
-                        <p class="text-gray-300 text-center text-sm mt-2" data-lang-es="Ayudante general del proyecto y aporta al desarrollo de Afterbeat." data-lang-en="General project assistant and contributes to the development of Afterbeat.">Ayudante general del proyecto y aporta al desarrollo de Afterbeat.</p>
-                        <button class="details-button mt-4 w-full bg-purple-600 text-white font-bold py-2 rounded-full hover:bg-purple-700 transition-colors" data-member="jan-aguilera" data-lang-es="Ver Detalles" data-lang-en="See Details">Ver Detalles</button>
-                    </div>
-                </div>
-            </section>
-        </main>
-        
-        <!-- Pie de página (Footer) -->
-        <footer class="w-full max-w-5xl mx-auto py-8 text-center text-gray-400 border-t border-gray-700 mt-16">
-            <p>&copy; 2025 Afterbeat. Todos los derechos reservados.</p>
-            <div class="flex flex-col md:flex-row justify-center mt-4 space-y-2 md:space-y-0 md:space-x-4">
-                <a href="https://docs.google.com/document/d/17MpIYF7SwEDWwdN-atlcJ83r8js--EOHMCarXsMo0yw/edit?usp=sharing" target="_blank" class="text-gray-400 hover:text-white transition-colors" data-lang-es="Preguntas Frecuentes" data-lang-en="FAQ">Preguntas Frecuentes</a>
-                <a href="https://docs.google.com/document/d/1RNKPQKCiFmslvnJi6JrMNOk3jjnSjEkg2YFooN7FRuw/edit?usp=sharing" target="_blank" class="text-gray-400 hover:text-white transition-colors" data-lang-es="Nuestra Historia" data-lang-en="Our Story">Nuestra Historia</a>
+            <div class="text-center mb-8">
+                <p>Una vez completado el formulario, ya podéis enviar vuestra aportación desde vuestra aplicación bancaria.</p>
             </div>
-            <div class="flex justify-center mt-4 space-x-4">
-                <a href="https://www.instagram.com/afterbeat_app" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                    <!-- SVG de Instagram con diseño de líneas -->
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                        <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
-                        <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
-                    </svg>
+            
+            <!-- Detalles de pago -->
+            <div class="bg-gray-700 p-6 rounded-lg mb-8">
+                <h3 class="text-2xl font-bold text-white mb-4 text-center">Datos de Pago</h3>
+                <div class="space-y-4">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between">
+                        <span class="font-semibold text-lg">Bizum:</span>
+                        <span class="text-purple-400 font-mono text-xl">+34 667998360</span>
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-center justify-between">
+                        <span class="font-semibold text-lg">Transferencia Bancaria:</span>
+                        <span class="text-purple-400 font-mono text-xl">ES16 2100 2337 4302 0072 6622</span>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <p class="text-sm text-gray-400">
+                            <strong>Concepto:</strong> "Donacion Afterbeat" y vuestro nombre.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-sm italic text-gray-400 mb-6">
+                🔍 Queremos ser totalmente transparentes: todo el dinero utilizado para empezar este proyecto lo podéis ver haciendo clic en el botón de abajo.
+            </p>
+            <div class="text-center mb-8">
+                 <a href="https://docs.google.com/spreadsheets/d/1TkQDjO3o87zbwRmNXAEfLDppLlTcVQVM0lpnVy84bo0/edit?usp=sharing" target="_blank" class="btn btn-purple">
+                    Datos Financieros
                 </a>
             </div>
-        </footer>
-    </div>
-    
-    <!-- Modal para los detalles del equipo (inicialmente oculto) -->
-    <div id="modal" class="fixed inset-0 z-50 bg-black bg-opacity-80 hidden items-center justify-center p-4">
-        <div class="bg-gray-800 p-8 rounded-2xl shadow-xl w-full max-w-lg relative text-gray-300">
-            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors text-2xl font-bold">&times;</button>
-            <h3 id="modal-name" class="text-3xl font-bold text-white mb-4"></h3>
-            <div id="modal-content" class="space-y-4">
-                <!-- Contenido generado por JavaScript -->
-            </div>
+
+            <p class="text-center mb-6">
+                📩 Si además estáis interesados en conocer nuestro plan de empresa y el proyecto completo, podéis avisarnos en el formulario y estaremos encantados de mandároslo por correo.
+            </p>
+            
+            <!-- Formulario de contacto (sin funcionalidad de envío) -->
+            <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4 bg-gray-700 p-6 rounded-lg">
+                <!-- Por favor, reemplaza esta clave con tu propia clave de Web3Forms -->
+                <input type="hidden" name="access_key" value="78ee7040-aa04-4e03-a152-ca85505aa311">
+                <h3 class="text-2xl font-bold text-white mb-4 text-center">Rellena el Formulario</h3>
+                <div>
+                    <label for="name" class="block text-sm font-medium mb-1">Nombre Completo</label>
+                    <input type="text" id="name" name="nombre" class="form-input" placeholder="Tu nombre y apellido" required>
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-1">Correo Electrónico</label>
+                    <input type="email" id="email" name="correo" class="form-input" placeholder="tu_correo@ejemplo.com" required>
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium mb-1">Número de Teléfono</label>
+                    <input type="tel" id="phone" name="telefono" class="form-input" placeholder="+34 667998360" required>
+                </div>
+                <div>
+                    <label for="amount" class="block text-sm font-medium mb-1">Cantidad Donada (€)</label>
+                    <input type="number" id="amount" name="cantidad_donada" class="form-input" placeholder="Ej: 20" min="1">
+                </div>
+                <div class="space-y-2">
+                    <span class="block text-sm font-medium mb-1">¿Realizaste el pago?</span>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <input id="pago_si" name="pago_realizado" type="radio" value="Sí" class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300">
+                            <label for="pago_si" class="ml-2 block text-sm text-gray-300">Sí</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="pago_no" name="pago_realizado" type="radio" value="No" class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300">
+                            <label for="pago_no" class="ml-2 block text-sm text-gray-300">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium mb-1">Tu Mensaje</label>
+                    <textarea id="message" name="mensaje" rows="5" class="form-input" placeholder="Escribe aquí tus ideas, mensajes de motivación o si estás interesado en ser socio/inversor."></textarea>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn bg-purple-600 hover:bg-purple-700 text-white w-full md:w-auto">
+                        Enviar Formulario
+                    </button>
+                    <p class="text-xs text-gray-400 mt-2">
+                        El formulario ahora está conectado a Web3Forms.
+                    </p>
+                </div>
+            </form>
+
         </div>
     </div>
-
-    <!-- Script para la funcionalidad -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const langToggle = document.getElementById('lang-toggle');
-            const body = document.body;
-            const detailsButtons = document.querySelectorAll('.details-button');
-            const modal = document.getElementById('modal');
-            const closeModalBtn = document.getElementById('close-modal');
-            const modalName = document.getElementById('modal-name');
-            const modalContent = document.getElementById('modal-content');
-            
-            // --- Lógica del fondo de la red de orbes flotantes ---
-            const canvas = document.getElementById('bg-canvas');
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-            let mouse = { x: null, y: null, radius: 250 };
-            let requestId = null;
-
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-                particles = [];
-                initParticles();
-            }
-
-            class Particle {
-                constructor(x, y) {
-                    this.x = x;
-                    this.y = y;
-                    this.baseX = x;
-                    this.baseY = y;
-                    this.size = Math.random() * 1.5 + 0.5;
-                    this.speedX = (Math.random() - 0.5) * 0.5;
-                    this.speedY = (Math.random() - 0.5) * 0.5;
-                    this.opacity = Math.random() * 0.5 + 0.2;
-                }
-                draw() {
-                    ctx.fillStyle = `rgba(189, 189, 255, ${this.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.closePath();
-                    ctx.fill();
-                }
-                update() {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < mouse.radius) {
-                        let force = (mouse.radius - distance) / mouse.radius;
-                        this.x -= (dx * force * 0.05);
-                        this.y -= (dy * force * 0.05);
-                    }
-                    
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-
-                    if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-                    if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-                }
-            }
-
-            function initParticles() {
-                for (let i = 0; i < (canvas.width * canvas.height) / 7000; i++) {
-                    let x = Math.random() * canvas.width;
-                    let y = Math.random() * canvas.height;
-                    particles.push(new Particle(x, y));
-                }
-            }
-
-            function connect() {
-                for (let a = 0; a < particles.length; a++) {
-                    for (let b = a; b < particles.length; b++) {
-                        let dx = particles[a].x - particles[b].x;
-                        let dy = particles[a].y - particles[b].y;
-                        let distance = Math.sqrt(dx * dx + dy * dy);
-
-                        if (distance < 100) {
-                            let opacityValue = 1 - (distance / 100);
-                            ctx.strokeStyle = `rgba(147, 51, 234, ${opacityValue})`;
-                            ctx.lineWidth = 0.5;
-                            ctx.beginPath();
-                            ctx.moveTo(particles[a].x, particles[a].y);
-                            ctx.lineTo(particles[b].x, particles[b].y);
-                            ctx.stroke();
-                        }
-                    }
-                }
-            }
-
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                connect();
-                particles.forEach(particle => {
-                    particle.update();
-                    particle.draw();
-                });
-                requestId = requestAnimationFrame(animate);
-            }
-
-            window.addEventListener('resize', resizeCanvas);
-            window.addEventListener('mousemove', (e) => {
-                mouse.x = e.clientX;
-                mouse.y = e.clientY;
-            });
-            window.addEventListener('mouseout', () => {
-                mouse.x = null;
-                mouse.y = null;
-            });
-            
-            resizeCanvas();
-            animate();
-            
-            // --- Lógica del resto de la página (la que ya tenías) ---
-            
-            // Mapeo de datos del equipo (simulado)
-            const teamData = {
-                'alastair-older': {
-                    es: {
-                        name: 'Alastair Older',
-                        title: 'socio estrategico y networking',
-                        description: 'Socio estratégico y aporta experiencia en gestión económica, estrategia empresarial y networking.',
-                        links: {
-                            cv: '#',
-                            email: '#',
-                            linkedin: '#'
-                        },
-                        image: 'https://placehold.co/200x200/4B5563/FFFFFF?text=Alastair+Older'
-                    },
-                    en: {
-                        name: 'Alastair Older',
-                        title: 'Strategic Partner & Networking',
-                        description: 'Strategic partner who provides expertise in economic management, business strategy, and networking.',
-                        links: {
-                            cv: '#',
-                            email: '#',
-                            linkedin: '#'
-                        },
-                        image: 'https://placehold.co/200x200/4B5563/FFFFFF?text=Alastair+Older'
-                    }
-                },
-                'adrien-fabrega': {
-                    es: {
-                        name: 'Adrien Fábrega',
-                        title: 'Fundador y CEO',
-                        description: 'Visionario detrás de Afterbeat, apasionado por la música electrónica y la vida nocturna.',
-                        links: {
-                            cv: 'uploaded:CV_Adrien_Fabrega_Mantoux 18-08-2025.pdf',
-                            email: 'andrew.mantoux@gmail.com',
-                            linkedin: 'https://www.linkedin.com/in/adrien-fabrega-mantoux-926818363'
-                        },
-                        image: 'https://placehold.co/200x200/9333ea/FFFFFF?text=Adrien+Fábrega'
-                    },
-                    en: {
-                        name: 'Adrien Fábrega',
-                        title: 'Founder & CEO',
-                        description: 'Visionary behind Afterbeat, passionate about electronic music and nightlife.',
-                        links: {
-                            cv: 'uploaded:CV_Adrien_Fabrega_Mantoux 18-08-2025.pdf',
-                            email: 'andrew.mantoux@gmail.com',
-                            linkedin: 'https://www.linkedin.com/in/adrien-fabrega-mantoux-926818363'
-                        },
-                        image: 'https://placehold.co/200x200/9333ea/FFFFFF?text=Adrien+Fábrega'
-                    }
-                },
-                'jan-aguilera': {
-                    es: {
-                        name: 'Jan Aguilera',
-                        title: 'Socio y ayudante',
-                        description: 'Ayudante general del proyecto y aporta al desarrollo de Afterbeat.',
-                        links: {
-                            cv: '#',
-                            email: '#',
-                            linkedin: 'https://www.linkedin.com/in/jan-aguilera-seijo-45a256382'
-                        },
-                        image: 'https://placehold.co/200x200/4f46e5/FFFFFF?text=Jan+Aguilera'
-                    },
-                    en: {
-                        name: 'Jan Aguilera',
-                        title: 'Partner & Assistant',
-                        description: 'General project assistant and contributes to the development of Afterbeat.',
-                        links: {
-                            cv: '#',
-                            email: '#',
-                            linkedin: 'https://www.linkedin.com/in/jan-aguilera-seijo-45a256382'
-                        },
-                        image: 'https://placehold.co/200x200/4f46e5/FFFFFF?text=Jan+Aguilera'
-                    }
-                }
-            };
-
-            // Lógica para el cambio de idioma
-            langToggle.addEventListener('click', () => {
-                const currentLang = body.classList.contains('lang-es') ? 'es' : 'en';
-                const newLang = currentLang === 'es' ? 'en' : 'es';
-                body.classList.remove(`lang-${currentLang}`);
-                body.classList.add(`lang-${newLang}`);
-                
-                document.querySelectorAll('[data-lang-es]').forEach(el => {
-                    if (newLang === 'en') {
-                        el.textContent = el.dataset.langEn;
-                    } else {
-                        el.textContent = el.dataset.langEs;
-                    }
-                });
-            });
-
-            // Lógica para mostrar los detalles del miembro del equipo
-            detailsButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const memberId = button.dataset.member;
-                    const currentLang = body.classList.contains('lang-es') ? 'es' : 'en';
-                    const memberInfo = teamData[memberId][currentLang];
-                    
-                    modalName.textContent = memberInfo.name;
-
-                    let cvHtml = '';
-                    if (memberInfo.links.cv && memberInfo.links.cv !== '#') {
-                        cvHtml = `
-                            <li><a href="${memberInfo.links.cv}" target="_blank" class="text-purple-400 hover:underline">
-                                <span data-lang-es="Ver CV" data-lang-en="View CV">Ver CV</span>
-                            </a></li>
-                        `;
-                    }
-                    
-                    let emailHtml = '';
-                    if (memberInfo.links.email && memberInfo.links.email !== '#') {
-                        emailHtml = `<li><span class="text-gray-300">${memberInfo.links.email}</span></li>`;
-                    }
-
-                    let linkedinHtml = '';
-                    if (memberInfo.links.linkedin && memberInfo.links.linkedin !== '#') {
-                        linkedinHtml = `
-                            <li><a href="${memberInfo.links.linkedin}" target="_blank" class="text-purple-400 hover:underline">
-                                <span data-lang-es="Perfil de LinkedIn" data-lang-en="LinkedIn Profile">Perfil de LinkedIn</span>
-                            </a></li>
-                        `;
-                    }
-
-                    modalContent.innerHTML = `
-                        <p class="text-xl font-semibold mb-2">${memberInfo.title}</p>
-                        <p>${memberInfo.description}</p>
-                        <ul class="list-disc list-inside mt-4 space-y-2">
-                            ${cvHtml}
-                            ${emailHtml}
-                            ${linkedinHtml}
-                        </ul>
-                    `;
-                    
-                    // Asegurarse de que los enlaces dentro del modal también cambien de idioma
-                    const modalLinks = modalContent.querySelectorAll('span[data-lang-es]');
-                    modalLinks.forEach(el => {
-                        if (currentLang === 'en') {
-                            el.textContent = el.dataset.langEn;
-                        } else {
-                            el.textContent = el.dataset.langEs;
-                        }
-                    });
-
-                    modal.style.display = 'flex';
-                });
-            });
-
-            // Lógica para cerrar el modal
-            closeModalBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-            window.addEventListener('click', (event) => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
-        });
-    </script>
 </body>
 </html>
 
