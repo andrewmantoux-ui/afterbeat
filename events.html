@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afterbeat - All Events</title>
+    <!-- Carga de Tailwind CSS para un diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración de la fuente Inter -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #0b0c1e; /* Fondo más oscuro y sofisticado */
+        }
+
+        /* Estilos para el canvas de fondo */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.8; /* Hace el fondo más sutil */
+        }
+
+        /* Estilo para la animación de la flecha */
+        .arrow-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .arrow-icon.rotated {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Canvas de fondo para la animación interactiva -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Contenedor principal de la página, por encima del canvas -->
+    <div class="relative z-10 min-h-screen flex flex-col items-center p-4">
+
+        <!-- Botón para cambiar de idioma -->
+        <div class="absolute top-4 right-4 z-50">
+            <button id="lang-toggle" class="bg-gray-800 text-gray-300 px-4 py-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors">
+                ES / EN
+            </button>
+        </div>
+        
+        <!-- Sección de Encabezado -->
+        <header class="text-center py-10 md:py-20 max-w-2xl mx-auto">
+            <a href="index.html" class="text-3xl font-extrabold text-white tracking-tight hover:text-purple-400 transition-colors">
+                Afterbeat
+            </a>
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white tracking-tight mt-4" data-lang-es="Todos los Eventos" data-lang-en="All Events">Todos los Eventos</h1>
+        </header>
+
+        <!-- Contenido principal de la página de eventos -->
+        <main class="w-full max-w-5xl space-y-8 p-4">
+            <!-- Evento 1 - Contenedor expandible -->
+            <div class="expandable-event bg-gray-800 p-6 rounded-2xl shadow-xl transition-all hover:scale-105 cursor-pointer">
+                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+                    <!-- Fecha visual en lugar de una imagen -->
+                    <div class="flex-shrink-0 w-full md:w-auto h-36 md:h-auto rounded-lg bg-gray-700 flex flex-col items-center justify-center p-4">
+                        <p class="text-white text-lg font-semibold" data-lang-es="Noviembre" data-lang-en="November">Noviembre</p>
+                        <p class="text-white text-5xl font-extrabold mt-1">15</p>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-2xl font-bold text-white mb-2" data-lang-es="La Prereo Afterbeat" data-lang-en="The Afterbeat Pre-party">La Prereo Afterbeat</h2>
+                            <!-- Icono de flecha para indicar que es expandible -->
+                            <svg class="arrow-icon w-6 h-6 text-white transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-300" data-lang-es="15 de noviembre, 2025 | 22:00 - 05:00" data-lang-en="November 15, 2025 | 10 PM - 5 AM">15 de noviembre, 2025 | 22:00 - 05:00</p>
+                        <!-- Contenido oculto -->
+                        <div class="event-details hidden mt-2">
+                            <p class="text-gray-400 text-sm mt-2" data-lang-es="Este es el pre-lanzamiento de Afterbeat. La fiesta es una villa privada en Lake district por la zona de bowness on windermere. Es un evento **+17** con un aforo máximo de 130 personas. Tendremos DJs, una barra dentro de la fiesta y habrá sorpresas y premios que podáis ganar ;)." data-lang-en="This is the pre-launch party for Afterbeat. The party is in a private villa in the Lake District, near Bowness-on-Windermere. It's a **+17** event with a maximum capacity of 130 people. We will have DJs, a bar inside the party, and there will be surprises and prizes for you to win ;).">Este es el pre-lanzamiento de Afterbeat. La fiesta es una villa privada en Lake district por la zona de bowness on windermere. Es un evento **+17** con un aforo máximo de 130 personas. Tendremos DJs, una barra dentro de la fiesta y habrá sorpresas y premios que podáis ganar ;).</p>
+                            <p class="text-gray-400 text-sm mt-2" data-lang-es="En este evento se puede consumir todo tipo de drogas, por lo tanto, no os ofendáis si veis algo de eso, ya que es un evento privado." data-lang-en="In this event, all kinds of drugs can be consumed, therefore, don't be offended if you see anything like that, as it is a private event.">En este evento se puede consumir todo tipo de drogas, por lo tanto, no os ofendáis si veis algo de eso, ya que es un evento privado.</p>
+                            <p class="text-gray-400 text-sm mt-2 font-semibold" data-lang-es="Normas:" data-lang-en="Rules:">Normas:</p>
+                            <ul class="text-gray-400 text-sm list-disc pl-5 mt-1">
+                                <li data-lang-es="Lo que pase en la fiesta se queda en la fiesta." data-lang-en="What happens at the party stays at the party.">Lo que pase en la fiesta se queda en la fiesta.</li>
+                                <li data-lang-es="Tendremos seguridad." data-lang-en="We will have security.">Tendremos seguridad.</li>
+                                <li data-lang-es="No se puede entrar con botellas o alcohol (se compra en la barra)." data-lang-en="You cannot enter with bottles or alcohol (it is bought at the bar).">No se puede entrar con botellas o alcohol (se compra en la barra).</li>
+                                <li data-lang-es="Sean decentes y no destrocen la casa." data-lang-en="Be decent and don't trash the house.">Sean decentes y no destrocen la casa.</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4" data-lang-es="Mantente al día de la venta de entradas y la ubicación del evento siguiendo nuestro Instagram." data-lang-en="Stay up to date on ticket sales and event location by following our Instagram.">Mantente al día de la venta de entradas y la ubicación del evento siguiendo nuestro Instagram.</p>
+                             <a href="https://www.instagram.com/afterbeat_app" target="_blank" class="mt-4 inline-block bg-purple-600 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-purple-700 transition-colors">
+                                @afterbeat_app
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Evento 2 - Contenedor expandible -->
+            <div class="expandable-event bg-gray-800 p-6 rounded-2xl shadow-xl transition-all hover:scale-105 cursor-pointer">
+                <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-8">
+                    <!-- Fecha visual en lugar de una imagen -->
+                    <div class="flex-shrink-0 w-full md:w-auto h-36 md:h-auto rounded-lg bg-gray-700 flex flex-col items-center justify-center p-4 text-center">
+                        <p class="text-white text-lg font-semibold" data-lang-es="sin fecha" data-lang-en="no date">sin fecha</p>
+                        <p class="text-white text-5xl font-extrabold mt-1">xxx</p>
+                    </div>
+                    <div class="flex-grow">
+                        <div class="flex items-center justify-between">
+                            <h2 class="text-2xl font-bold text-white mb-2" data-lang-es="Opening Party Afterbeat" data-lang-en="Afterbeat Opening Party">Opening Party Afterbeat</h2>
+                             <!-- Icono de flecha para indicar que es expandible -->
+                            <svg class="arrow-icon w-6 h-6 text-white transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        <p class="text-gray-300" data-lang-es="Fecha y hora por confirmar. Posiblemente inicie y termine más tarde." data-lang-en="Date and time to be confirmed. Possibly starting and ending later.">Fecha y hora por confirmar. Posiblemente inicie y termine más tarde.</p>
+                        <!-- Contenido oculto -->
+                        <div class="event-details hidden mt-2">
+                            <p class="text-gray-400 text-sm mt-2" data-lang-es="Este es el evento de lanzamiento oficial de Afterbeat. La noche de su lanzamiento, cuando la aplicación esté terminada y disponible para la descarga. El evento tendrá DJ y barra en su interior, con la ubicación exacta por confirmar." data-lang-en="This is the official Afterbeat launch event. The night of its release, when the application is finished and available for download. The event will have a DJ and an inside bar, with the exact location to be confirmed.">Este es el evento de lanzamiento oficial de Afterbeat. La noche de su lanzamiento, cuando la aplicación esté terminada y disponible para la descarga. El evento tendrá DJ y barra en su interior, con la ubicación exacta por confirmar.</p>
+                            <p class="text-gray-400 text-sm mt-2 font-semibold" data-lang-es="Normas:" data-lang-en="Rules:">Normas:</p>
+                            <ul class="text-gray-400 text-sm list-disc pl-5 mt-1">
+                                <li data-lang-es="Lo que pase en la fiesta se queda en la fiesta." data-lang-en="What happens at the party stays at the party.">Lo que pase en la fiesta se queda en la fiesta.</li>
+                                <li data-lang-es="Tendremos seguridad." data-lang-en="We will have security.">Tendremos seguridad.</li>
+                                <li data-lang-es="No se puede entrar con botellas o alcohol (se compra en la barra)." data-lang-en="You cannot enter with bottles or alcohol (it is bought at the bar).">No se puede entrar con botellas o alcohol (se compra en la barra).</li>
+                                <li data-lang-es="Sean decentes y no destrocen la casa." data-lang-en="Be decent and don't trash the house.">Sean decentes y no destrocen la casa.</li>
+                            </ul>
+                            <p class="text-gray-400 text-sm mt-4" data-lang-es="Mantente al día de la venta de entradas y la ubicación del evento siguiendo nuestro Instagram." data-lang-en="Stay up to date on ticket sales and event location by following our Instagram.">Mantente al día de la venta de entradas y la ubicación del evento siguiendo nuestro Instagram.</p>
+                             <a href="https://www.instagram.com/afterbeat_app" target="_blank" class="mt-4 inline-block bg-purple-600 text-white font-bold py-2 px-6 rounded-full shadow-lg hover:bg-purple-700 transition-colors">
+                                @afterbeat_app
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Pie de página (Footer) -->
+        <footer class="w-full max-w-5xl mx-auto py-8 text-center text-gray-400 border-t border-gray-700 mt-16">
+            <p>&copy; 2025 Afterbeat. Todos los derechos reservados.</p>
+            <div class="flex justify-center mt-4 space-x-4">
+                <a href="https://docs.google.com/document/d/17MpIYF7SwEDWwdN-atlcJ83r8js--EOHMCarXsMo0yw/edit?usp=sharing" target="_blank" class="text-gray-400 hover:text-white transition-colors" data-lang-es="Preguntas Frecuentes" data-lang-en="FAQ">Preguntas Frecuentes</a>
+                <a href="https://docs.google.com/document/d/1RNKPQKCiFmslvnJi6JrMNOk3jjnSjEkg2YFooN7FRuw/edit?usp=sharing" target="_blank" class="text-gray-400 hover:text-white transition-colors" data-lang-es="Nuestra Historia" data-lang-en="Our Story">Nuestra Historia</a>
+            </div>
+            <div class="flex justify-center mt-4 space-x-4">
+                <a href="https://www.instagram.com" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <!-- SVG de Instagram con diseño de líneas -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                        <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+                        <line x1="17.5" y1="6.5" x2="17.5" y2="6.5" />
+                    </svg>
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script para la funcionalidad -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('lang-toggle');
+            const body = document.body;
+            
+            // --- Lógica del fondo de la red de orbes flotantes ---
+            const canvas = document.getElementById('bg-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let mouse = { x: null, y: null, radius: 250 };
+            let requestId = null;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                particles = [];
+                initParticles();
+            }
+
+            class Particle {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.baseX = x;
+                    this.baseY = y;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.speedY = (Math.random() - 0.5) * 0.5;
+                    this.opacity = Math.random() * 0.5 + 0.2;
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(189, 189, 255, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fill();
+                }
+                update() {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distance < mouse.radius) {
+                        let force = (mouse.radius - distance) / mouse.radius;
+                        this.x -= (dx * force * 0.05);
+                        this.y -= (dy * force * 0.05);
+                    }
+                    
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                    if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+                }
+            }
+
+            function initParticles() {
+                for (let i = 0; i < (canvas.width * canvas.height) / 7000; i++) {
+                    let x = Math.random() * canvas.width;
+                    let y = Math.random() * canvas.height;
+                    particles.push(new Particle(x, y));
+                }
+            }
+
+            function connect() {
+                for (let a = 0; a < particles.length; a++) {
+                    for (let b = a; b < particles.length; b++) {
+                        let dx = particles[a].x - particles[b].x;
+                        let dy = particles[a].y - particles[b].y;
+                        let distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            let opacityValue = 1 - (distance / 100);
+                            ctx.strokeStyle = `rgba(147, 51, 234, ${opacityValue})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[a].x, particles[a].y);
+                            ctx.lineTo(particles[b].x, particles[b].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                connect();
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                requestId = requestAnimationFrame(animate);
+            }
+
+            window.addEventListener('resize', resizeCanvas);
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+            });
+            window.addEventListener('mouseout', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+            
+            resizeCanvas();
+            animate();
+            
+            // --- Lógica del resto de la página (la que ya tenías) ---
+            
+            // Lógica para el cambio de idioma
+            langToggle.addEventListener('click', () => {
+                const currentLang = body.classList.contains('lang-en') ? 'en' : 'es';
+                const newLang = currentLang === 'es' ? 'en' : 'es';
+
+                // Update class on body
+                body.classList.remove(`lang-${currentLang}`);
+                body.classList.add(`lang-${newLang}`);
+
+                // Update text content for all elements with data-lang attributes
+                document.querySelectorAll('[data-lang-es]').forEach(el => {
+                    if (newLang === 'en') {
+                        el.textContent = el.dataset.langEn;
+                    } else {
+                        el.textContent = el.dataset.langEs;
+                    }
+                });
+            });
+
+            // Lógica para expandir/comprimir los eventos
+            const expandableEvents = document.querySelectorAll('.expandable-event');
+
+            expandableEvents.forEach(event => {
+                event.addEventListener('click', () => {
+                    const details = event.querySelector('.event-details');
+                    const arrow = event.querySelector('.arrow-icon');
+                    details.classList.toggle('hidden');
+                    arrow.classList.toggle('rotated');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
