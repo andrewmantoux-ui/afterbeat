@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-lang-es="Afterbeat: Nuestra Propuesta Detallada" data-lang-en="Afterbeat: Our Detailed Proposal">Afterbeat: Nuestra Propuesta Detallada</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Configuración de la fuente Inter y estilos base -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0c1e; /* Fondo oscuro consistente */
+        }
+    </style>
+</head>
+<body class="lang-es text-gray-200 min-h-screen">
+    
+    <!-- Botón de regreso y cambio de idioma -->
+    <div class="fixed top-4 left-4 z-20">
+        <a href="index.html" class="flex items-center bg-gray-800 text-gray-300 px-4 py-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors">
+            <i class="ph ph-arrow-left text-lg mr-2"></i>
+            <span data-lang-es="Volver al Inicio" data-lang-en="Back to Home">Volver al Inicio</span>
+        </a>
+    </div>
+
+    <div class="fixed top-4 right-4 z-20">
+        <button id="lang-toggle" class="bg-gray-800 text-gray-300 px-4 py-2 rounded-full shadow-lg hover:bg-gray-700 transition-colors">
+            ES / EN
+        </button>
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="w-full max-w-4xl mx-auto py-16 px-4 space-y-16">
+        
+        <!-- Encabezado y resumen del Plan Detallado -->
+        <header class="text-center pt-8 pb-4">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-4" 
+                data-lang-es="Afterbeat: Plan Detallado" 
+                data-lang-en="Afterbeat: Detailed Plan">
+                Afterbeat: Plan Detallado
+            </h1>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto" 
+               data-lang-es="Afterbeat es una app social y de eventos pensada para revolucionar las fiestas, en especial las **House Parties** y eventos privados. Nuestro objetivo es conectar mejor a organizadores y asistentes, hacer la noche más divertida, segura y dinámica para los clientes, y más rentable y controlada para los organizadores." 
+               data-lang-en="Afterbeat is a social and events app designed to revolutionize parties, especially **House Parties** and private events. Our goal is to better connect organizers and attendees, making the night more fun, safe, and dynamic for customers, and more profitable and controlled for organizers.">
+               Afterbeat es una app social y de eventos pensada para revolucionar las fiestas, en especial las **House Parties** y eventos privados. Nuestro objetivo es conectar mejor a organizadores y asistentes, hacer la noche más divertida, segura y dinámica para los clientes, y más rentable y controlada para los organizadores.
+            </p>
+        </header>
+
+        <!-- Sección 1: Para Organizadores -->
+        <section class="bg-gray-800 p-6 md:p-10 rounded-2xl shadow-2xl border-t-4 border-purple-600">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 flex items-center" 
+                data-lang-es="🎛️ Para Organizadores" 
+                data-lang-en="🎛️ For Organizers">
+                <i class="ph ph-sliders text-purple-400 text-4xl mr-3"></i> 
+                Para Organizadores
+            </h2>
+            
+            <div class="space-y-6">
+                <!-- Beneficio 1: Pagos sin efectivo -->
+                <div class="flex items-start bg-gray-700 p-4 rounded-xl hover:bg-gray-600 transition-colors">
+                    <i class="ph ph-credit-card text-green-400 text-2xl mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="font-bold text-xl text-white mb-1" 
+                            data-lang-es="Gestión de Pagos sin Efectivo" 
+                            data-lang-en="Cashless Payment Management">
+                            Gestión de Pagos sin Efectivo
+                        </h3>
+                        <p data-lang-es="Todos los cobros y pagos se realizan a través de la app, **eliminando riesgos** asociados al manejo de dinero físico. Esto aumenta la seguridad y la velocidad en la barra." 
+                           data-lang-en="All collections and payments are handled through the app, **eliminating risks** associated with handling physical cash. This increases security and bar speed.">
+                           Todos los cobros y pagos se realizan a través de la app, **eliminando riesgos** asociados al manejo de dinero físico. Esto aumenta la seguridad y la velocidad en la barra.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Beneficio 2: Control de Acceso Seguro -->
+                <div class="flex items-start bg-gray-700 p-4 rounded-xl hover:bg-gray-600 transition-colors">
+                    <i class="ph ph-fingerprint text-red-400 text-2xl mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="font-bold text-xl text-white mb-1" 
+                            data-lang-es="Control de Acceso Seguro" 
+                            data-lang-en="Secure Access Control">
+                            Control de Acceso Seguro
+                        </h3>
+                        <p data-lang-es="Filtro de **mayores de edad** y registro digital de asistentes, sin necesidad de revisar DNI en la puerta. Más control sobre quién accede al evento." 
+                           data-lang-en="**Age verification** filter and digital attendee registration, eliminating the need to check ID at the door. More control over who accesses the event.">
+                           Filtro de **mayores de edad** y registro digital de asistentes, sin necesidad de revisar DNI en la puerta. Más control sobre quién accede al evento.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Beneficio 3: Aumento de Ingresos -->
+                <div class="flex items-start bg-gray-700 p-4 rounded-xl hover:bg-gray-600 transition-colors">
+                    <i class="ph ph-trend-up text-yellow-400 text-2xl mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="font-bold text-xl text-white mb-1" 
+                            data-lang-es="Aumento de Ingresos con Precios Dinámicos" 
+                            data-lang-en="Increased Revenue with Dynamic Pricing">
+                            Aumento de Ingresos con Precios Dinámicos
+                        </h3>
+                        <p data-lang-es="El sistema de precios dinámicos en copas y consumiciones motiva a los clientes a consumir más y genera una **mayor rentabilidad** para el organizador al optimizar la venta de stock." 
+                           data-lang-en="The dynamic pricing system for drinks and consumption motivates customers to consume more and generates **higher profitability** for the organizer by optimizing stock sales.">
+                           El sistema de precios dinámicos en copas y consumiciones motiva a los clientes a consumir más y genera una **mayor rentabilidad** para el organizador al optimizar la venta de stock.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Beneficio 4: Gestión de Personal -->
+                <div class="flex items-start bg-gray-700 p-4 rounded-xl hover:bg-gray-600 transition-colors">
+                    <i class="ph ph-users-three text-blue-400 text-2xl mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="font-bold text-xl text-white mb-1" 
+                            data-lang-es="Gestión Automática del Personal" 
+                            data-lang-en="Automatic Staff Management">
+                            Gestión Automática del Personal
+                        </h3>
+                        <p data-lang-es="Posibilidad de pagar a empleados (barra, seguridad, puerta, etc.) de manera automática al terminar el evento, con opción de revisar antes de enviar los pagos." 
+                           data-lang-en="Ability to pay employees (bar, security, door, etc.) automatically upon event completion, with the option to review before sending payments.">
+                           Posibilidad de pagar a empleados (barra, seguridad, puerta, etc.) de manera automática al terminar el evento, con opción de revisar antes de enviar los pagos.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Separador visual -->
+        <div class="text-center">
+            <i class="ph ph-heartbeat text-purple-600 text-5xl"></i>
+        </div>
+
+        <!-- Sección 2: Para Fans de la Fiesta -->
+        <section class="bg-gray-800 p-6 md:p-10 rounded-2xl shadow-2xl border-t-4 border-purple-600">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 flex items-center" 
+                data-lang-es="🎉 Para Fans de la Fiesta" 
+                data-lang-en="🎉 For Party Fans">
+                <i class="ph ph-party-popper text-purple-400 text-4xl mr-3"></i> 
+                Para Fans de la Fiesta
+            </h2>
+            
+            <div class="space-y-6">
+                
+                <!-- Beneficio 1: Comunidad Real -->
+                <div class="flex items-start bg-gray-700 p-4 rounded-xl hover:bg-gray-600 transition-colors">
+                    <i class="ph ph-chats-circle text-orange-400 text-2xl mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="font-bold text-xl text-white mb-1" 
+                            data-lang-es="Una Comunidad Real e Interactiva" 
+                            data-lang-en="A Real and Interactive Community">
+                            Una Comunidad Real e Interactiva
+                        </h3>
+                        <p data-lang-es="Más que una entrada digital, los usuarios pueden **interactuar entre sí**, ver quién asiste, qué DJ toca en vivo, y compartir momentos en la app." 
+                           data-lang-en="More than a digital ticket, users can **interact with each other**, see who is attending, which DJ is playing live, and share moments within the app.">
+                           Más que una entrada digital, los usuarios pueden **interactuar entre sí**, ver quién asiste, qué DJ toca en vivo, y compartir momentos en la app.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Beneficio 2: Premios y Recompensas -->
+                <div class="flex items-start bg-gray-700 p-4 rounded-xl hover:bg-gray-600 transition-colors">
+                    <i class="ph ph-gift text-red-400 text-2xl mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="font-bold text-xl text-white mb-1" 
+                            data-lang-es="Premios y Recompensas por Jugar" 
+                            data-lang-en="Prizes and Rewards for Playing">
+                            Premios y Recompensas por Jugar
+                        </h3>
+                        <p data-lang-es="Posibilidad de ganar chupitos, botellas, copas o entradas a futuros eventos **participando en dinámicas y retos** dentro de la app durante la noche. ¡Tu noche más divertida!" 
+                           data-lang-en="Possibility of winning shots, bottles, drinks, or tickets to future events by **participating in dynamics and challenges** within the app throughout the night. Your most fun night!">
+                           Posibilidad de ganar chupitos, botellas, copas o entradas a futuros eventos **participando en dinámicas y retos** dentro de la app durante la noche. ¡Tu noche más divertida!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Beneficio 3: Pagos y Precios Dinámicos -->
+                <div class="flex items-start bg-gray-700 p-4 rounded-xl hover:bg-gray-600 transition-colors">
+                    <i class="ph ph-chart-line text-yellow-400 text-2xl mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="font-bold text-xl text-white mb-1" 
+                            data-lang-es="Pagos Rápidos y Precios Sorpresa" 
+                            data-lang-en="Fast Payments and Surprise Prices">
+                            Pagos Rápidos y Precios Sorpresa
+                        </h3>
+                        <p data-lang-es="Pide y paga consumiciones desde el móvil. Disfruta de la emoción de los **precios dinámicos** que suben y bajan, generando un ambiente de interacción y sorpresa." 
+                           data-lang-en="Order and pay for drinks from your phone. Enjoy the excitement of **dynamic prices** that rise and fall, creating an atmosphere of interaction and surprise.">
+                           Pide y paga consumiciones desde el móvil. Disfruta de la emoción de los **precios dinámicos** que suben y bajan, generando un ambiente de interacción y sorpresa.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Beneficio 4: Opiniones y Recuerdos -->
+                <div class="flex items-start bg-gray-700 p-4 rounded-xl hover:bg-gray-600 transition-colors">
+                    <i class="ph ph-camera text-blue-400 text-2xl mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="font-bold text-xl text-white mb-1" 
+                            data-lang-es="Contenido en Directo y Recuerdos" 
+                            data-lang-en="Live Content and Memories">
+                            Contenido en Directo y Recuerdos
+                        </h3>
+                        <p data-lang-es="Publica fotos, vídeos y retos en directo. Los asistentes pueden **comentar, dejar reseñas** y compartir los mejores momentos de cada fiesta." 
+                           data-lang-en="Post live photos, videos, and challenges. Attendees can **comment, leave reviews**, and share the best moments of each party.">
+                           Publica fotos, vídeos y retos en directo. Los asistentes pueden **comentar, dejar reseñas** y compartir los mejores momentos de cada fiesta.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+        <!-- Separador visual -->
+        <div class="text-center">
+            <i class="ph ph-lightning text-purple-600 text-5xl"></i>
+        </div>
+
+        <!-- Sección 3: Impacto y Soluciones -->
+        <section class="p-6 md:p-10 rounded-2xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center" 
+                data-lang-es="🚀 Impacto y Soluciones de Afterbeat" 
+                data-lang-en="🚀 Afterbeat Impact and Solutions">
+                Impacto y Soluciones de Afterbeat
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Solución 1 -->
+                <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-lg">
+                    <h3 class="font-bold text-xl text-white mb-2" data-lang-es="Mejor Comunicación y Comunidad" data-lang-en="Better Communication and Community">Mejor Comunicación y Comunidad</h3>
+                    <p data-lang-es="Se elimina la falta de comunicación entre trabajadores, organizadores y asistentes, y se crea una **comunidad digital** sólida alrededor de cada evento." data-lang-en="It eliminates the lack of communication between staff, organizers, and attendees, and creates a solid **digital community** around each event.">Se elimina la falta de comunicación entre trabajadores, organizadores y asistentes, y se crea una **comunidad digital** sólida alrededor de cada evento.</p>
+                </div>
+                <!-- Solución 2 -->
+                <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-lg">
+                    <h3 class="font-bold text-xl text-white mb-2" data-lang-es="Mayor Control y Seguridad" data-lang-en="Greater Control and Security">Mayor Control y Seguridad</h3>
+                    <p data-lang-es="Se garantiza más **control y seguridad** en la gestión de entradas, pagos y acceso, minimizando riesgos y problemas logísticos." data-lang-en="More **control and security** is guaranteed in the management of tickets, payments, and access, minimizing risks and logistical problems.">Se garantiza más **control y seguridad** en la gestión de entradas, pagos y acceso, minimizando riesgos y problemas logísticos.</p>
+                </div>
+                <!-- Solución 3 -->
+                <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-lg">
+                    <h3 class="font-bold text-xl text-white mb-2" data-lang-es="Experiencia de Cliente Mejorada" data-lang-en="Improved Customer Experience">Experiencia de Cliente Mejorada</h3>
+                    <p data-lang-es="Se mejora la experiencia del cliente, haciendo las fiestas más **interactivas, dinámicas** y con más oportunidades de ganar premios." data-lang-en="The customer experience is improved, making parties more **interactive, dynamic**, and with more opportunities to win prizes.">Se mejora la experiencia del cliente, haciendo las fiestas más **interactivas, dinámicas** y con más oportunidades de ganar premios.</p>
+                </div>
+                <!-- Solución 4 -->
+                <div class="bg-gray-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-lg">
+                    <h3 class="font-bold text-xl text-white mb-2" data-lang-es="Más Ingresos para Organizadores" data-lang-en="More Revenue for Organizers">Más Ingresos para Organizadores</h3>
+                    <p data-lang-es="Se generan **más ingresos** para empresas y organizadores, gracias a nuevas dinámicas de consumo y sistemas de eficiencia operativa." data-lang-en="**More revenue** is generated for businesses and organizers, thanks to new consumption dynamics and operational efficiency systems.">Se generan **más ingresos** para empresas y organizadores, gracias a nuevas dinámicas de consumo y sistemas de eficiencia operativa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección 4: Oportunidad para Inversores -->
+        <section class="bg-purple-900 bg-opacity-30 p-8 md:p-12 rounded-2xl shadow-2xl mt-12 border-4 border-purple-600">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4 text-center flex items-center justify-center" 
+                data-lang-es="💡 Oportunidad para Inversores" 
+                data-lang-en="💡 Opportunity for Investors">
+                <i class="ph ph-hand-coins text-purple-400 text-4xl mr-3"></i>
+                Oportunidad para Inversores
+            </h2>
+            <p class="text-lg text-gray-300 mb-6 text-center max-w-3xl mx-auto" 
+               data-lang-es="Afterbeat no es solo una app de entradas: es un nuevo concepto de vida nocturna, que combina comunidad, interacción, pagos inteligentes y control de eventos en una sola plataforma." 
+               data-lang-en="Afterbeat is not just a ticketing app: it's a new nightlife concept that combines community, interaction, smart payments, and event control into a single platform.">
+               Afterbeat no es solo una app de entradas: es un nuevo concepto de vida nocturna, que combina comunidad, interacción, pagos inteligentes y control de eventos en una sola plataforma.
+            </p>
+            <p class="text-base text-gray-400 italic text-center" 
+               data-lang-es="El mercado del ocio nocturno está en constante crecimiento, y Afterbeat ofrece una solución escalable, rentable y adaptable internacionalmente." 
+               data-lang-en="The nightlife and leisure market is constantly growing, and Afterbeat offers a scalable, profitable, and internationally adaptable solution.">
+               El mercado del ocio nocturno está en constante crecimiento, y Afterbeat ofrece una solución escalable, rentable y adaptable internacionalmente.
+            </p>
+            <p class="text-sm text-gray-500 mt-4 text-center" 
+               data-lang-es="Los detalles completos del modelo de negocio se comparten únicamente bajo acuerdos de confidencialidad, garantizando la protección de la idea y el valor para nuestros socios." 
+               data-lang-en="The full details of the business model are shared only under confidentiality agreements, ensuring the protection of the idea and value for our partners.">
+               Los detalles completos del modelo de negocio se comparten únicamente bajo acuerdos de confidencialidad, garantizando la protección de la idea y el valor para nuestros socios.
+            </p>
+        </section>
+
+
+        <!-- Call to Action Final -->
+        <section class="text-center py-10">
+            <h2 class="text-3xl font-bold text-white mb-4" 
+                data-lang-es="¿Listo para Revolucionar la Fiesta?" 
+                data-lang-en="Ready to Revolutionize the Party?">
+                ¿Listo para Revolucionar la Fiesta?
+            </h2>
+            <p class="text-lg text-gray-400 mb-6" 
+               data-lang-es="Tu apoyo es crucial para hacer de Afterbeat una realidad. Ayúdanos a construir el futuro de la vida nocturna." 
+               data-lang-en="Your support is crucial to making Afterbeat a reality. Help us build the future of nightlife.">
+               Tu apoyo es crucial para hacer de Afterbeat una realidad. Ayúdanos a construir el futuro de la vida nocturna.
+            </p>
+            <a href="donation.html" class="bg-purple-600 text-white font-bold py-4 px-8 rounded-full shadow-xl hover:bg-purple-700 transition-colors text-xl transform hover:scale-105 inline-block" 
+               data-lang-es="Apoyar con una Donación" 
+               data-lang-en="Support with a Donation">
+               Apoyar con una Donación
+            </a>
+        </section>
+
+    </main>
+    
+    <!-- Script para la funcionalidad de cambio de idioma -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const langToggle = document.getElementById('lang-toggle');
+            const body = document.body;
+
+            // Función para aplicar el cambio de idioma
+            const applyLanguage = (newLang) => {
+                const titleElement = document.querySelector('title');
+                if (titleElement) {
+                    titleElement.textContent = titleElement.getAttribute(`data-lang-${newLang}`);
+                }
+                
+                body.classList.remove('lang-es', 'lang-en');
+                body.classList.add(`lang-${newLang}`);
+                
+                document.querySelectorAll('[data-lang-es]').forEach(el => {
+                    const esText = el.dataset.langEs;
+                    const enText = el.dataset.langEn;
+                    
+                    if (newLang === 'en') {
+                        // Usar innerHTML para manejar las negritas (markdown **)
+                        el.innerHTML = enText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    } else {
+                        el.innerHTML = esText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    }
+                });
+            };
+
+            // Listener para el botón de cambio de idioma
+            langToggle.addEventListener('click', () => {
+                const currentLang = body.classList.contains('lang-es') ? 'es' : 'en';
+                const newLang = currentLang === 'es' ? 'en' : 'es';
+                applyLanguage(newLang);
+            });
+
+            // Inicializar el idioma al cargar (por defecto ES)
+            applyLanguage('es');
+        });
+    </script>
+</body>
+</html>
